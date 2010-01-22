@@ -1,6 +1,7 @@
 """Interface to nipy image."""
 
-from nipype.externals import pynifti
+# from nipype.externals import pynifti
+import nipy.io.imageformats as nii
 
 class Image(object):
     def __init__(self, filename=None):
@@ -10,8 +11,8 @@ class Image(object):
             self.load_image(filename)
 
     def load_image(self, filename):
-        img = pynifti.load(filename)
-        self.img = img
+        img = nii.load(filename)
+        self.img = nii.as_closest_canonical(img)
         self.filename = filename
         self.data = self.img.get_data()
 

@@ -201,16 +201,19 @@ class Viewer(HasTraits):
         self.load_image()
 
         axl_plt = SlicePlot(self.plotdata, voxel=self.voxel)
+        axl_plt.title = 'axial'
         axl_plt.set_slice('axial')
         axl_plt.sync_trait('xindex', self.voxel, alias='x')
         axl_plt.sync_trait('yindex', self.voxel, alias='y')
 
         cor_plt = SlicePlot(self.plotdata, voxel=self.voxel)
+        cor_plt.title = 'coronal'
         cor_plt.set_slice('coronal')
         cor_plt.sync_trait('xindex', self.voxel, alias='x')
         cor_plt.sync_trait('yindex', self.voxel, alias='z')
 
         sag_plt = SlicePlot(self.plotdata, voxel=self.voxel)
+        sag_plt.title = 'sagittal'
         sag_plt.set_slice('sagittal')
         sag_plt.sync_trait('xindex', self.voxel, alias='y')
         sag_plt.sync_trait('yindex', self.voxel, alias='z')
@@ -219,6 +222,7 @@ class Viewer(HasTraits):
         self.container.add(axl_plt)
         self.container.add(cor_plt)
         self.container.add(sag_plt)
+        self.container.title = self.img.filename
 
         self.plot = self.container
 
